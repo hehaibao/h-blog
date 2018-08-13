@@ -5,6 +5,10 @@
 ## 技术栈
 
   vue-cli(vue 2.x + webpack + vue-router + Eslint) + elementUI + ES6
+  
+## 在线预览
+
+  https://hehaibao.github.io/h-blog/dist/index.html
 
 ## 主要功能
 
