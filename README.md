@@ -1,6 +1,6 @@
 # h-blog
 
-> A Vue.js project 用elementUI模仿我的博客(http://www.hehaibao.com/)，简单的写的几个练习页面，仅供参考。
+> A Vue.js project 用elementUI模仿[我的博客](http://www.hehaibao.com/)，简单的写的几个练习页面，仅供参考。
 
 ## 技术栈
 
@@ -28,10 +28,10 @@
 
 ``` bash
 # clone
-git clone https://github.com/hehaibao/h-blog.git  
+git clone https://github.com/hehaibao/h-blog.git
 
 # cd dir
-cd vue2-elm
+cd h-blog
 
 # install dependencies
 npm install
