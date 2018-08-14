@@ -4,7 +4,9 @@
 
 ## 技术栈
 
-  vue-cli(vue 2.x + webpack + vue-router + mock) + elementUI + ES6
+  vue-cli(vue 2.x + webpack + vue-router) + elementUI + ES6 + mock + axios
+  
+  本地代码已全部通过ESlint检测。
   
 ## 在线预览
 
