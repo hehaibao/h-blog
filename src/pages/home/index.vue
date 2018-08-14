@@ -65,106 +65,48 @@
 <script>
 import leftSide from '@/components/aside.vue'
 import foot from '@/components/footer.vue'
+import axios from 'axios'
+// eslint-disable-next-line
+import mockdata from '@/common/mockdata'
 
 export default {
   name: 'Home',
   data () {
     return {
       search: '',
-      list: [ // 文章列表 数据模拟
-        {
-          id: 1,
-          title: 'Vue的一些常见面试题',
-          desc: '本篇主要结合Vue，以QA的形式列出相关的一些面试题，答案仅供参考~ （Tips: 以后还将会陆续更新！）',
-          date: '08月07日',
-          tags: ['tag1', 'tag2', 'tag3']
-        },
-        {
-          id: 2,
-          title: 'PDF.js和PDFObject.js的使用',
-          desc: '前言 这两天有个需求，要在网页上显示PDF文件。让我看看有没有好的解决方法，能不能让非IT人员不能下',
-          date: '08月06日',
-          tags: ['tag1', 'tag2']
-        },
-        {
-          id: 3,
-          title: 'Echarts图表练习篇：学习时长统计',
-          desc: '什么是Echarts? ECharts（官网：http://echarts.baidu.com/），一个使用 JavaScript 实现的开源可视',
-          date: '08月02日',
-          tags: ['tag1', 'tag2']
-        },
-        {
-          id: 4,
-          title: '个人的一些js demo分享',
-          desc: '三生三世十里桃花',
-          date: '08月02日',
-          tags: ['tag1', 'tag2']
-        }
-      ],
-      hotList: [ // 热评文章 数据模拟
-        {
-          id: 1,
-          title: '测试文章111111111'
-        },
-        {
-          id: 2,
-          title: '测试文章22222222222'
-        },
-        {
-          id: 3,
-          title: '测试文章3333333333'
-        },
-        {
-          id: 4,
-          title: '测试文章44444444'
-        },
-        {
-          id: 5,
-          title: '测试文章55555555555'
-        }
-      ],
-      tags: [ // 标签 数据模拟
-        {
-          id: 1,
-          text: 'vue',
-          color: '#cf828d'
-        },
-        {
-          id: 2,
-          text: 'wordpress',
-          color: '#bcd50d'
-        },
-        {
-          id: 3,
-          text: 'js',
-          color: '#5b404d'
-        },
-        {
-          id: 4,
-          text: 'es2015',
-          color: '#3b323f'
-        },
-        {
-          id: 5,
-          text: 'webpack',
-          color: '#33b484'
-        },
-        {
-          id: 6,
-          text: 'vue-router',
-          color: '#d970b4'
-        },
-        {
-          id: 7,
-          text: 'php',
-          color: '#a75b51'
-        }
-      ]
+      list: [],
+      hotList: [],
+      tags: []
     }
   },
   components: {
     leftSide,
     foot
+  },
+  mounted () {
+    this.getNewsList() // 获取最新文章
+    this.getHotList() // 获取热评文章
+    this.getTagsList() // 获取标签
+  },
+  methods: {
+    getNewsList () {
+      axios.get('newsList').then(res => {
+        let data = res.data
+        this.list = data.lists
+      })
+    },
+    getHotList () {
+      axios.get('hotList').then(res => {
+        let data = res.data
+        this.hotList = data.lists
+      })
+    },
+    getTagsList () {
+      axios.get('tagsList').then(res => {
+        let data = res.data
+        this.tags = data.lists
+      })
+    }
   }
 }
 </script>
