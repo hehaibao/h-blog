@@ -4,7 +4,7 @@
 
 ## 技术栈
 
-  vue-cli(vue 2.x + webpack + vue-router + Eslint) + elementUI + ES6
+  vue-cli(vue 2.x + webpack + vue-router + mock) + elementUI + ES6
   
 ## 在线预览
 
@@ -12,7 +12,7 @@
 
 ## 主要功能
 
-  - [x]  首页
+  - [x]  首页(含mock)
   ![image](/screenshots/home.jpg)
 
   - [x]  文章详情页
@@ -28,7 +28,7 @@
 
   更多功能，后续有时间会继续添加..
 
-## Build Setup
+## 如何使用？
 
 ``` bash
 # clone
