@@ -23,6 +23,7 @@ function getNewsList () {
   }
 
   return {
+    total: 100,
     lists: lists
   }
 }

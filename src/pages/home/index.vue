@@ -25,9 +25,10 @@
                         </ul>
                         <!-- 分页 -->
                         <el-pagination
+                            @current-change="handleCurrentChange"
                             background
                             layout="prev, pager, next"
-                            :total="100">
+                            :total="newsListCount">
                         </el-pagination>
                     </div>
                 </el-col>
@@ -74,6 +75,7 @@ export default {
   data () {
     return {
       search: '',
+      newsListCount: 0,
       list: [],
       hotList: [],
       tags: []
@@ -92,6 +94,7 @@ export default {
     getNewsList () {
       axios.get('newsList').then(res => {
         let data = res.data
+        this.newsListCount = data.total // 总数量
         this.list = data.lists
       })
     },
@@ -106,6 +109,11 @@ export default {
         let data = res.data
         this.tags = data.lists
       })
+    },
+    handleCurrentChange (val) {
+      // 分页改变时回调
+      console.log(`当前页: ${val}`)
+      this.getNewsList()
     }
   }
 }
