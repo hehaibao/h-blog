@@ -11,6 +11,7 @@
                   <router-link :to="nav.link">{{ nav.text }}</router-link>
               </li>
           </ul>
+          <p @click="emit" class="test-btn"><a href="javascript:;">父子组件通信测试,点我查看</a></p>
       </el-aside>
     </div>
 </template>
@@ -38,14 +39,19 @@ export default {
           link: '/register'
         },
         {
-          text: '菜单4',
-          link: '/'
+          text: '效果演示',
+          link: '/demo'
         },
         {
-          text: '菜单5',
-          link: '/'
+          text: '凑数而已',
+          link: '/undefined'
         }
       ]
+    }
+  },
+  methods: {
+    emit () {
+      this.$emit('showmsg', 'hello world') // 触发showbox方法，第二个参数 为向父组件传递的数据
     }
   }
 }
@@ -88,5 +94,11 @@ h1 {
 }
 .el-aside li a:hover {
     color: #333;
+}
+.el-aside .test-btn a {
+    color: #fff;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
 }
 </style>

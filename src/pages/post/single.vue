@@ -1,7 +1,7 @@
 <template>
-    <div class="home h" v-loading="fullscreenLoading">
+    <div class="home h">
       <el-container class="h">
-          <left-side></left-side>
+          <left-side @showmsg="getcomponentmsg" :msg="msg"></left-side>
           <el-main>
             <div class="breadcrumb">
               <el-breadcrumb separator="/">
@@ -40,6 +40,7 @@ export default {
   name: 'Single',
   data () {
     return {
+      msg: '',
       id: '',
       title: '',
       author: '',
@@ -58,14 +59,7 @@ export default {
     this.fetchData()
   },
   methods: {
-    hideLoading () {
-      // 2秒后关闭loading
-      setTimeout(() => {
-        this.fullscreenLoading = false
-      }, 2000)
-    },
     async fetchData () {
-      this.hideLoading() // 关闭模拟loading
       this.id = this.$route.params.id // 获取URL传过来的参数id
       // 请求接口 获取详情数据 TODO
       // 此处没有用mock，简单的模拟一下做演示
@@ -87,6 +81,9 @@ export default {
       this.publishDate = '2018-08-13'
       this.viewCount = '200'
       this.content = '<strong>当前文章的ID是：</strong>' + this.id
+    },
+    getcomponentmsg (msg) {
+      alert('我在详情页-----' + msg)
     }
   }
 }

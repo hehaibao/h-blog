@@ -1,7 +1,7 @@
 <template>
   <div class="home h">
     <el-container class="h">
-        <left-side></left-side>
+        <left-side @showmsg="getcomponentmsg" :msg="msg"></left-side>
         <el-main>
             <el-row :gutter="20">
                 <el-col :span="16">
@@ -37,10 +37,11 @@
                         <div class="rt-row"><p class="welcome">下午好，欢迎来到博客</p></div>
                         <div class="rt-row">
                             <el-input
+                                class="search-ipt"
                                 placeholder="请输入要搜索的关键字"
-                                prefix-icon="el-icon-search"
                                 v-model="search">
                             </el-input>
+                            <el-button slot="append" icon="el-icon-search" @click="serachPost"></el-button>
                         </div>
                         <div class="rt-row">
                             <h2>热评文章</h2>
@@ -74,6 +75,7 @@ export default {
   name: 'Home',
   data () {
     return {
+      msg: '',
       search: '',
       newsListCount: 0,
       list: [],
@@ -114,6 +116,13 @@ export default {
       // 分页改变时回调
       console.log(`当前页: ${val}`)
       this.getNewsList()
+    },
+    serachPost () {
+      // 搜索文章
+      alert('todo')
+    },
+    getcomponentmsg (msg) {
+      alert('我在首页------' + msg)
     }
   }
 }
@@ -194,6 +203,9 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+}
+.search-ipt {
+    width: 250px;
 }
 .hot-list li {
     margin-bottom: 10px;
