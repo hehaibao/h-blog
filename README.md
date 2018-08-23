@@ -26,7 +26,7 @@
   - [x]  注册页(含验证)
   ![image](/screenshots/register.jpg)
   
-  里面涉及到了路由的导航守卫，组件的复用，sessionStorage存储是否登录状态 等等
+  里面涉及到了路由的导航守卫，组件的复用，sessionStorage存储是否登录状态，父子组件通信，elementUI的一些用法 等等
 
   更多功能，后续有时间会继续添加..
 
