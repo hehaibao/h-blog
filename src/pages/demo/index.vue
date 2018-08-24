@@ -21,7 +21,8 @@
                 </div>
                 <h2 class="title">my demos</h2>
                 <div class="demos">
-                    <a href="javascript:;" @click="test">test</a>
+                    <a v-txtDemo="{ color: 'red', fontsize: '18px' }">指令 - 让我变红</a>
+                    <a>{{ filterTest | filterA }} - 过滤 - 小写变大写</a>
                 </div>
             </div>
             <foot></foot>
@@ -51,6 +52,7 @@ export default {
   data () {
     return {
       msg: '',
+      filterTest: 'hello world',
       fullscreenLoading: false,
       centerDialogVisible: false
     }
@@ -58,6 +60,22 @@ export default {
   components: {
     leftSide,
     foot
+  },
+  directives: {
+    // 自定义指令
+    txtDemo (el, binding) {
+      el.style.color = binding.value.color // 改变字的颜色
+      el.style.fontSize = binding.value.fontsize // 改变字的大小
+    }
+  },
+  filters: {
+    // 自定义过滤器
+    filterA (value) {
+      // 将小写过滤成大写
+      if (!value) return ''
+      value = value.toString()
+      return value.toUpperCase()
+    }
   },
   methods: {
     loading () {
