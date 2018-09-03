@@ -20,7 +20,7 @@
               </p>
               <div class="con" v-html="content"></div>
               <div class="con mt20">
-                <h4>此处展示一下富文本编辑器</h4>
+                <h4>此处展示一下codemirror代码编辑器</h4>
                 <codemirror v-model="code" :options="cmOptions"></codemirror>
               </div>
               <div class="rate">
@@ -78,7 +78,8 @@ const unfold = (f, seed) => {
         mode: 'text/javascript',
         theme: 'base16-dark',
         lineNumbers: true,
-        line: true
+        line: true,
+        readOnly: true
       }
     }
   },
