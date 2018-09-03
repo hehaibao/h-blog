@@ -19,6 +19,10 @@
                 <span>浏览量：{{ viewCount }}</span>
               </p>
               <div class="con" v-html="content"></div>
+              <div class="con mt20">
+                <h4>此处展示一下富文本编辑器</h4>
+                <codemirror v-model="code" :options="cmOptions"></codemirror>
+              </div>
               <div class="rate">
                 <el-rate
                   v-model="rate"
@@ -35,6 +39,14 @@
 <script>
 import leftSide from '@/components/aside.vue'
 import foot from '@/components/footer.vue'
+// require component
+import { codemirror } from 'vue-codemirror'
+// language js
+import 'codemirror/mode/javascript/javascript.js'
+// require styles
+import 'codemirror/lib/codemirror.css'
+// theme css
+import 'codemirror/theme/base16-dark.css'
 
 export default {
   name: 'Single',
@@ -48,12 +60,32 @@ export default {
       viewCount: '',
       content: '',
       fullscreenLoading: true,
-      rate: null
+      rate: null,
+      code: `const pluckDeep = key => obj => key.split(".").reduce((accum, key) => accum[key], obj)
+
+const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
+
+const unfold = (f, seed) => {
+  const go = (f, seed, acc) => {
+    const res = f(seed)
+    return res ? go(f, res[1], acc.concat([res[0]])) : acc
+  }
+  return go(f, seed, [])
+}`,
+      cmOptions: {
+        // codemirror options
+        tabSize: 4,
+        mode: 'text/javascript',
+        theme: 'base16-dark',
+        lineNumbers: true,
+        line: true
+      }
     }
   },
   components: {
     leftSide,
-    foot
+    foot,
+    codemirror
   },
   mounted () {
     this.fetchData()
@@ -98,7 +130,7 @@ export default {
   padding: 25px 0;
   min-height: 450px;
 }
-.rate {
+.rate, .mt20 {
   margin-top: 20px;
 }
 </style>
