@@ -29,6 +29,30 @@
                   show-text>
                 </el-rate>
               </div>
+              <p class="tc">
+                <el-button type="warning" icon="el-icon-share">点赞（10）</el-button>
+                <el-button type="success" icon="el-icon-star-off" @click="showPayBox">打赏</el-button>
+              </p>
+              <div class="comment-box">
+                <h2>说点什么</h2>
+                <el-form ref="form" :model="form" label-width="80px">
+                  <el-form-item label="昵称">
+                    <el-input v-model="form.name" placeholder="您的昵称"></el-input>
+                  </el-form-item>
+                  <el-form-item label="邮箱">
+                    <el-input v-model="form.email" placeholder="您的常用邮箱"></el-input>
+                  </el-form-item>
+                  <el-form-item label="链接">
+                    <el-input v-model="form.url" placeholder="您的网站链接"></el-input>
+                  </el-form-item>
+                  <el-form-item label="内容">
+                    <el-input type="textarea" v-model="form.desc" placeholder="说点啥吧，不然我都不知道你来过"></el-input>
+                  </el-form-item>
+                  <el-form-item>
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                  </el-form-item>
+                </el-form>
+              </div>
             </div>
             <foot></foot>
           </el-main>
@@ -61,6 +85,12 @@ export default {
       content: '',
       fullscreenLoading: true,
       rate: null,
+      form: {
+        name: '',
+        email: '',
+        url: '',
+        desc: ''
+      },
       code: `const pluckDeep = key => obj => key.split(".").reduce((accum, key) => accum[key], obj)
 
 const compose = (...fns) => res => fns.reduce((accum, next) => next(accum), res)
@@ -117,6 +147,16 @@ const unfold = (f, seed) => {
     },
     getcomponentmsg (msg) {
       alert('我在详情页-----' + msg)
+    },
+    showPayBox () {
+      // 显示打赏弹出层
+      this.$alert('<strong>这里放支付宝和微信图片即可</strong>', '打赏支持', {
+        dangerouslyUseHTMLString: true
+      })
+    },
+    onSubmit () {
+      // TODO.
+      alert('submit')
     }
   }
 }
@@ -133,5 +173,14 @@ const unfold = (f, seed) => {
 }
 .rate, .mt20 {
   margin-top: 20px;
+}
+.comment-box {
+  margin-top: 40px;
+}
+.comment-box h2 {
+  margin-bottom: 20px;
+}
+.tc {
+  text-align: center;
 }
 </style>
