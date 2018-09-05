@@ -24,6 +24,16 @@
                     <a v-txtDemo="{ color: 'red', fontsize: '18px' }">指令 - 让我变红</a>
                     <a>{{ filterTest | filterA }} - 过滤 - 小写变大写</a>
                 </div>
+                <h2 class="title">vuex demo</h2>
+                <div class="demos">
+                  <p>当前数量：{{ count }}</p>
+                  <div>
+                    <button @click="$store.commit('add')">加1</button>
+                    <button @click="$store.commit('diff')">减1</button>
+                    <button @click="$store.dispatch('asyncAdd')">异步加1</button>
+                    <button @click="$store.dispatch('asyncDiff')">异步减1</button>
+                  </div>
+                </div>
             </div>
             <foot></foot>
         </el-main>
@@ -75,6 +85,11 @@ export default {
       if (!value) return ''
       value = value.toString()
       return value.toUpperCase()
+    }
+  },
+  computed: {
+    count () {
+      return this.$store.state.count
     }
   },
   methods: {

@@ -6,10 +6,10 @@ Vue.use(Router)
 // 路由配置
 const routes = [
   { path: '', component: () => import(/* webpackChunkName: "home" */'@/pages/home/index'), meta: { title: '博客首页' } },
-  { path: '/detail/:id', name: 'Detail', component: () => import(/* webpackChunkName: "Detail" */'@/pages/post/single'), meta: { title: '文章详情页' } },
+  { path: '/detail/:id', name: 'Detail', component: () => import(/* webpackChunkName: "Detail" */'@/pages/post/single'), meta: { title: '文章详情页', keepAlive: true } },
   { path: '/login', component: () => import(/* webpackChunkName: "login" */'@/pages/login/login'), meta: { title: '登录' } },
   { path: '/register', component: () => import(/* webpackChunkName: "register" */'@/pages/login/register'), meta: { title: '注册' } },
-  { path: '/demo', component: () => import(/* webpackChunkName: "demo" */'@/pages/demo/index'), meta: { title: '效果演示页' } }
+  { path: '/demo', component: () => import(/* webpackChunkName: "demo" */'@/pages/demo/index'), meta: { title: '效果演示页', keepAlive: true } }
 ]
 
 // 创建Vue Router实例
@@ -17,12 +17,16 @@ const router = new Router({
   // mode: "history",
   routes,
   scrollBehavior (to, from, savedPosition) {
-    // return 期望滚动到哪个的位置
-    if (savedPosition) {
+    // return 期望滚动到哪个的位置 keep-alive 返回缓存页面后记录浏览位置
+    if (savedPosition && to.meta.keepAlive) {
       return savedPosition
-    } else {
-      return { x: 0, y: 0 }
     }
+    // 异步滚动操作
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ x: 0, y: 0 })
+      }, 0)
+    })
   }
 })
 
