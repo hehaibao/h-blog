@@ -10,7 +10,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {}, // vue设置的代理，用以解决 跨域 问题
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -63,8 +63,8 @@ module.exports = {
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
-    // npm install --save-dev compression-webpack-plugin
-    productionGzip: false,
+    // npm install --save-dev compression-webpack-plugin@1.1.11 (2.x报错)
+    productionGzip: true,
     productionGzipExtensions: ['js', 'css'],
 
     // Run the build command with an extra argument to
