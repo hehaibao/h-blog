@@ -1,3 +1,6 @@
+/**
+ * 异步
+ */
 export default {
   // 异步 1秒之后加1
   asyncAdd (store, { num } = { num: 1 }) {

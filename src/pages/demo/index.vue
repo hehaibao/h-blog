@@ -34,6 +34,12 @@
                     <button @click="$store.dispatch('asyncDiff')">异步减1</button>
                   </div>
                 </div>
+                <h2 class="title">components</h2>
+                <div class="demos">
+                  <hello my-msg="abc"></hello>
+                  <testc @hey="parentFn"></testc>
+                  <slotc><span slot="test_slot">!!!!! 我是额外的slot内容</span></slotc>
+                </div>
             </div>
             <foot></foot>
         </el-main>
@@ -69,7 +75,22 @@ export default {
   },
   components: {
     leftSide,
-    foot
+    foot,
+    hello: {
+      props: ['myMsg'],
+      template: '<p>这是 hello 组件，此消息：{{myMsg}} 数据来源于props</p>'
+    },
+    testc: {
+      template: '<p>这是 testc 组件 <button @click="fn">按钮</button></p>',
+      methods: {
+        fn () {
+          this.$emit('hey', '这是子组件传递给父组件的数据')
+        }
+      }
+    },
+    slotc: {
+      template: '<p>这是slotc组件，测试插槽用 <slot name="test_slot"></slot></p>'
+    }
   },
   directives: {
     // 自定义指令
@@ -126,6 +147,9 @@ export default {
     },
     getcomponentmsg (msg) {
       alert('我在效果演示页-----' + msg)
+    },
+    parentFn (data) {
+      alert('父组件：'+ data)
     }
   }
 }
